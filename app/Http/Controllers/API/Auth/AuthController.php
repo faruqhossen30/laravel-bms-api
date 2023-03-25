@@ -51,13 +51,13 @@ class AuthController extends Controller
     {
 
         $request->validate([
-            'mobile'         => 'required',
+            'email'         => 'required',
             'password'      => 'required'
         ]);
 
         //
         try {
-            if (Auth::attempt($request->only('mobile', 'password'))) {
+            if (Auth::attempt($request->only('email', 'password'))) {
                 $user = Auth::user();
                 $token = $user->createToken(uniqid())->plainTextToken;
                 $user['token'] = $token;
@@ -76,7 +76,7 @@ class AuthController extends Controller
         return response()->json([
             'success' => false,
             'code' => 403,
-            'message' => 'Opps ! Mobile number or password wrong !'
+            'message' => 'Opps ! Username or Email or password wrong !'
         ], 403);
     }
 

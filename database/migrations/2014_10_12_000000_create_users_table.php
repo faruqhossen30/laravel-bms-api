@@ -19,11 +19,12 @@ return new class extends Migration
             $table->string('username');
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->unique()->nullable();
+            $table->integer('balance')->default(0);
             $table->string('password');
             // other
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_club')->default(false);
-            $table->boolean('is_user')->default(false);
+            $table->boolean('is_user')->default(true);
             $table->string('club_owner')->nullable();
             $table->string('club_mobile')->nullable();
             $table->string('club_address')->nullable();
