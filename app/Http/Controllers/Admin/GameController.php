@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Membership;
+use App\Models\Game;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Image;
 
-class MembershipController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,8 @@ class MembershipController extends Controller
      */
     public function index()
     {
-        $memberships = Membership::get();
-        return view('admin.membership.index', compact('memberships'));
-        
+        $games = Game::paginate();
+        return view('admin.game.index', compact('games'));
     }
 
     /**
@@ -30,7 +26,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        return view('admin.membership.create');
+        //
     }
 
     /**
@@ -41,29 +37,7 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
-        $request->validate([
-            'name'=>'required',
-            'price'=>'required',
-        ]);
-
-        $icon = null;
-        if ($request->file('icon')) {
-            // $imagethumbnail = $request->file('icon');
-            // $extension = $imagethumbnail->getClientOriginalExtension();
-            // $icon = Str::uuid() . '.' . $extension;
-            // Image::make($imagethumbnail)->save('uploads/membership/' . $icon);
-            return "ase";
-        }
-
-        Membership::create([
-            'author_id'=>Auth::user()->id,
-            'name'=>$request->name,
-            'price'=>$request->price,
-            'icon'=>$icon,
-        ]);
-
-        return redirect()->route('membership.index');
+        //
     }
 
     /**
@@ -108,7 +82,6 @@ class MembershipController extends Controller
      */
     public function destroy($id)
     {
-        Membership::firstWhere('id',$id)->delete();
-        return redirect()->route('membership.index');
+        //
     }
 }

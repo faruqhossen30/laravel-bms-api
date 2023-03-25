@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <div>
                         <a href="{{route('label.index')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
                             <i class="btn-icon-prepend" data-feather="list"></i>
@@ -48,7 +48,7 @@
                         <button class="btn btn-secondary">Cancel</button>
                     </form>
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

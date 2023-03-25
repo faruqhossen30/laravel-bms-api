@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AgoraController;
+use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\LabelController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TeamController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +21,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
-    Route::resource('label', LabelController::class);
-    Route::resource('membership', MembershipController::class);
     Route::resource('paymentgateway', PaymentgatewayController::class);
-    Route::resource('agora', AgoraController::class);
+    Route::resource('game', GameController::class);
+    Route::resource('team', TeamController::class);
 
     // Settings
     Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');

@@ -25,24 +25,43 @@
         </a>
       </li>
 
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('label.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="settings"></i>
-          <span class="link-title">User Label</span>
-        </a>
-      </li>
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('membership.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="settings"></i>
-          <span class="link-title">User Membership</span>
-        </a>
-      </li>
+
       <li class="nav-item">
         <a href="{{route('paymentgateway.index')}}" class="nav-link">
           <i class="link-icon" data-feather="dollar-sign"></i>
           <span class="link-title">Payment Gateway</span>
         </a>
       </li>
+      <li class="nav-item {{ active_class(['email/*']) }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
+          <i class="link-icon" data-feather="mail"></i>
+          <span class="link-title">Game Data</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse {{ show_class(['email/*']) }}" id="email">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{route('game.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">Game</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('team.index')}}" class="nav-link {{ active_class(['email/read']) }}">Teams</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link {{ active_class(['email/compose']) }}">Compose</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+
+
+
+
+
+
+
+
+
       <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">

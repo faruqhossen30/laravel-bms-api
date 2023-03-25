@@ -6,7 +6,7 @@
                     Agor API Credential
                 </span>
             </div>
-            <form action="{{route('agora.store')}}" method="post">
+            <form action="#" method="post">
                 @csrf
                 <div class="card-body">
                     <div class="input-group  mb-1">

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Label;
+use App\Models\Team;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class LabelController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class LabelController extends Controller
      */
     public function index()
     {
-        $labels = Label::get();
-        // return $labels;
-        return view('admin.label.index',compact('labels'));
+        $teams = Team::paginate(50);
+        return view('admin.team.index', compact('teams'));
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class LabelController extends Controller
      */
     public function create()
     {
-        return view('admin.label.create');
+        //
     }
 
     /**
@@ -39,20 +38,7 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'label'=>'required',
-            'diamond'=>'required',
-        ]);
-
-        Label::create([
-            'user_id'=>Auth::user()->id,
-            'name'=>$request->name,
-            'label'=>$request->label,
-            'diamond'=>$request->diamond,
-        ]);
-
-        return redirect()->route('label.index');
-
+        //
     }
 
     /**
@@ -74,9 +60,6 @@ class LabelController extends Controller
      */
     public function edit($id)
     {
-        $label = Label::firstWhere('id',$id);
-        // return $label;
-        return view('admin.label.edit',compact('label'));
         //
     }
 
@@ -89,18 +72,6 @@ class LabelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'label'=>'required',
-            'diamond'=>'required',
-        ]);
-
-        Label::firstWhere('id',$id)->update([
-            'name'=>$request->name,
-            'label'=>$request->label,
-            'diamond'=>$request->diamond
-        ]);
-
-        return redirect()->route('label.index');
         //
     }
 
@@ -112,7 +83,6 @@ class LabelController extends Controller
      */
     public function destroy($id)
     {
-        Label::firstWhere('id',$id)->delete();
-        return redirect()->route('label.index');
+        //
     }
 }
