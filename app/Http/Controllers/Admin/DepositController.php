@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\PaymentGateway;
+use App\Models\Deposit;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PaymentgatewayController extends Controller
+class DepositController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,8 @@ class PaymentgatewayController extends Controller
      */
     public function index()
     {
-        $list = PaymentGateway::get();
-        // return $list;
-        return view('admin.paymentgateway.index', compact('list'));
+        $deposits = Deposit::paginate(25);
+        return view('admin.deposit.index', compact('deposits'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PaymentgatewayController extends Controller
      */
     public function create()
     {
-        return view('admin.paymentgateway.create');
+        //
     }
 
     /**
@@ -39,18 +39,7 @@ class PaymentgatewayController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'bank'=>'required',
-            'type'=>'required',
-            'number'=>'required',
-        ]);
-
-        PaymentGateway::create([
-            'bank'=>$request->bank,
-            'type'=>$request->type,
-            'number'=>$request->number,
-        ]);
-        return redirect()->route('paymentgateway.index');
+        //
     }
 
     /**
@@ -72,7 +61,8 @@ class PaymentgatewayController extends Controller
      */
     public function edit($id)
     {
-        //
+        $deposit = Deposit::firstWhere('id', $id);
+        return view('admin.deposit.edit', compact('deposit'));
     }
 
     /**
@@ -84,7 +74,34 @@ class PaymentgatewayController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request->all();
+        $deposit = Deposit::firstWhere('id', $id);
+
+
+        $update = $deposit->update([
+            'amount' => $request->amount,
+            'status' => true,
+        ]);
+        // $update = Deposit::firstWhere('id',$id)->update([
+        //     'amount'=>$request->amount,
+        //     'status'=>true,
+        // ]);
+
+
+        if ($update) {
+            User::where('id', $deposit->user_id)->increment('balance', $deposit->amount);
+            $user = User::firstWhere('id', $deposit->user_id);
+
+            Transaction::create([
+                'user_id' => $deposit->user_id,
+                'credit' => $deposit->amount,
+                'description' => "Deposit {$deposit->amount} taka comfirmed !",
+                'balance' =>  $user->balance,
+            ]);
+        }
+
+
+        return redirect()->route('deposit.index');
     }
 
     /**
@@ -95,7 +112,7 @@ class PaymentgatewayController extends Controller
      */
     public function destroy($id)
     {
-        PaymentGateway::firstWhere('id',$id)->delete();
-        return redirect()->route('paymentgateway.index');
+        Deposit::firstWhere('id', $id)->delete();
+        return redirect()->route('deposit.index');
     }
 }

@@ -49,4 +49,35 @@ class SettingController extends Controller
         option(['withdraw_rate' => $request->withdraw_rate]);
         return redirect()->route('admin.settings');
     }
+
+    // Update
+    public function minimumDeposit(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'min_deposit'=>'required'
+        ]);
+        option(['min_deposit' => $request->min_deposit]);
+        return redirect()->route('admin.settings');
+    }
+
+    public function headerNotice(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'header_notice'=>'required'
+        ]);
+        option(['header_notice' => $request->header_notice]);
+        return redirect()->route('admin.settings');
+    }
+
+    public function footerNotice(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'footer_notice'=>'required'
+        ]);
+        option(['footer_notice' => $request->footer_notice]);
+        return redirect()->route('admin.settings');
+    }
 }

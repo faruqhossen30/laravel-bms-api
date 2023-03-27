@@ -55,9 +55,12 @@ class AuthController extends Controller
             'password'      => 'required'
         ]);
 
+        $loginType = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
         //
         try {
-            if (Auth::attempt($request->only('email', 'password'))) {
+            // if (Auth::attempt($request->only('email', 'password'))) {
+            if (Auth::attempt([$loginType => $request->email, 'password'=>$request->password])) {
                 $user = Auth::user();
                 $token = $user->createToken(uniqid())->plainTextToken;
                 $user['token'] = $token;

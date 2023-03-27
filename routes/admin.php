@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\AgoraController;
+use App\Http\Controllers\Admin\ClubController;
+use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\LabelController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +28,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('paymentgateway', PaymentgatewayController::class);
     Route::resource('game', GameController::class);
     Route::resource('team', TeamController::class);
+    Route::resource('deposit', DepositController::class);
+
+    Route::get('transactions',[TransactionController::class, 'index'])->name('transactions');
+
 
     // Settings
     Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');
+    Route::post('/setting/mindeposit', [SettingController::class, 'minimumDeposit'])->name('admin.setting.mindeposit');
+    Route::post('/setting/header-notice', [SettingController::class, 'headerNotice'])->name('admin.setting.headernotice');
+    Route::post('/setting/footer-notice', [SettingController::class, 'footerNotice'])->name('admin.setting.footernotice');
+    // Users
+    Route::resource('user',UserController::class);
+    Route::get('/clubs', [ClubController::class, 'index'])->name('clublist');
+
     Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');
     Route::post('/setting/daimond-commission', [SettingController::class, 'daimondCommission'])->name('admin.setting.daimondcommission');
     Route::post('/setting/daimond-price', [SettingController::class, 'daimondRate'])->name('admin.setting.daimondrate');

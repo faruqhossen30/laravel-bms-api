@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\PaymentGateway;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PaymentgatewayController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class PaymentgatewayController extends Controller
      */
     public function index()
     {
-        $list = PaymentGateway::get();
-        // return $list;
-        return view('admin.paymentgateway.index', compact('list'));
+        $users = User::paginate();
+        return view('admin.users.userlist',compact('users'));
     }
 
     /**
@@ -28,7 +26,7 @@ class PaymentgatewayController extends Controller
      */
     public function create()
     {
-        return view('admin.paymentgateway.create');
+        //
     }
 
     /**
@@ -39,18 +37,7 @@ class PaymentgatewayController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'bank'=>'required',
-            'type'=>'required',
-            'number'=>'required',
-        ]);
-
-        PaymentGateway::create([
-            'bank'=>$request->bank,
-            'type'=>$request->type,
-            'number'=>$request->number,
-        ]);
-        return redirect()->route('paymentgateway.index');
+        //
     }
 
     /**
@@ -95,7 +82,6 @@ class PaymentgatewayController extends Controller
      */
     public function destroy($id)
     {
-        PaymentGateway::firstWhere('id',$id)->delete();
-        return redirect()->route('paymentgateway.index');
+        //
     }
 }

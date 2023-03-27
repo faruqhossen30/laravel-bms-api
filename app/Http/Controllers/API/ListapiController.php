@@ -6,37 +6,35 @@ use App\Http\Controllers\Controller;
 use App\Models\Label;
 use App\Models\Membership;
 use App\Models\PaymentGateway;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ListapiController extends Controller
 {
-    public function paymentGateway()
+    public function clubList()
     {
-        $list = PaymentGateway::get();
+        $clubs = User::where('is_club', true)->get();
+
         return response()->json([
             'success' => true,
             'code' => 200,
-            'data' => $list
+            'data' => $clubs
         ]);
     }
 
-    public function userlabelList()
+    public function paymentMethodList()
     {
-        $list = Label::get();
+        $methods = PaymentGateway::get();
+
         return response()->json([
             'success' => true,
             'code' => 200,
-            'data' => $list
+            'data' => $methods
         ]);
+
     }
 
-    public function membershipList()
-    {
-        $list = Membership::get();
-        return response()->json([
-            'success' => true,
-            'code' => 200,
-            'data' => $list
-        ]);
-    }
+
+
+
 }

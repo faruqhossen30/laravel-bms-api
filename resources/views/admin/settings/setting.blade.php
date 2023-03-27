@@ -12,6 +12,9 @@
                 <a class="nav-link active " id="v-website-tab" data-bs-toggle="tab" href="#v-website" role="tab"
                     aria-controls="v-home" aria-selected="true"><span class="input-group"><i data-feather="chrome"
                             class="me-2"></i>Website Title</span></a>
+                <a class="nav-link" id="v-footernotice-tab" data-bs-toggle="tab" href="#v-footernotice" role="tab"
+                    aria-controls="v-home" aria-selected="true"><span class="input-group"><i data-feather="chrome"
+                            class="me-2"></i>footernotice Title</span></a>
                 <a class="nav-link " id="v-agora-tab" data-bs-toggle="tab" href="#v-agora" role="tab"
                     aria-controls="v-agora" aria-selected="false"><span class="input-group"><i data-feather="box"
                             class="me-2"></i>Agora</a>
@@ -20,17 +23,17 @@
                     aria-controls="v-contact" aria-selected="false"><span class="input-group"><i data-feather="home"
                             class="me-2"></i>contact</a>
 
-                <a class="nav-link " id="v-commission-tab" data-bs-toggle="tab" href="#v-commission" role="tab"
-                    aria-controls="v-commission" aria-selected="false"><span class="input-group"><i data-feather="gift"
-                            class="me-2"></i>Daimond Commission</a>
+                <a class="nav-link " id="v-headernotice-tab" data-bs-toggle="tab" href="#v-headernotice" role="tab"
+                    aria-controls="v-headernotice" aria-selected="false"><span class="input-group"><i data-feather="gift"
+                            class="me-2"></i>Header Notice</a>
 
-                <a class="nav-link " id="v-daimondrate-tab" data-bs-toggle="tab" href="#v-daimondrate" role="tab"
-                    aria-controls="v-daimondrate" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>Daimond Rate</a>
+                <a class="nav-link " id="v-deposit-tab" data-bs-toggle="tab" href="#v-deposit" role="tab"
+                    aria-controls="v-deposit" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
+                            class="me-2"></i>Deposit Limit</a>
 
                 <a class="nav-link " id="v-withdrawrate-tab" data-bs-toggle="tab" href="#v-withdrawrate" role="tab"
                     aria-controls="v-withdrawrate" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>Daimond Widthdraw Rate</a>
+                            class="me-2"></i>Withdraw Limit</a>
 
 
             </div>
@@ -40,6 +43,9 @@
                 <div class="tab-pane fade show active" id="v-website" role="tabpanel" aria-labelledby="v-website-tab">
                     @include('admin.settings.inc.website-title')
                 </div>
+                <div class="tab-pane fade show" id="v-footernotice" role="tabpanel" aria-labelledby="v-footernotice-tab">
+                    @include('admin.settings.inc.footernotice')
+                </div>
 
                 <div class="tab-pane fade" id="v-agora" role="tabpanel" aria-labelledby="v-agora-tab">
                     @include('admin.settings.inc.agora')
@@ -48,11 +54,11 @@
                     @include('admin.settings.inc.contact')
                 </div>
 
-                <div class="tab-pane fade" id="v-commission" role="tabpanel" aria-labelledby="v-commission-tab">
-                    @include('admin.settings.inc.commission')
+                <div class="tab-pane fade" id="v-headernotice" role="tabpanel" aria-labelledby="v-headernotice-tab">
+                    @include('admin.settings.inc.headernotice')
                 </div>
-                <div class="tab-pane fade" id="v-daimondrate" role="tabpanel" aria-labelledby="v-daimondrate-tab">
-                    @include('admin.settings.inc.daimondrate')
+                <div class="tab-pane fade" id="v-deposit" role="tabpanel" aria-labelledby="v-deposit-tab">
+                    @include('admin.settings.inc.deposit')
                 </div>
                 <div class="tab-pane fade" id="v-withdrawrate" role="tabpanel" aria-labelledby="v-withdrawrate-tab">
                     @include('admin.settings.inc.withdrawrate')

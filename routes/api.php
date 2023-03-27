@@ -5,6 +5,7 @@ use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
 use App\Http\Controllers\API\OptionapiController;
 use App\Http\Controllers\API\User\BuydaimondController;
+use App\Http\Controllers\API\User\DepositController;
 use App\Http\Controllers\API\User\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,9 @@ Route::post('register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     // Profile
     Route::prefix('user')->group(function () {
+        // User
+        Route::post('/deposit', [DepositController::class, 'store']);
+        Route::get('/deposits', [DepositController::class, 'index']);
         // OTP
         Route::post('/send-otp', [OtpverifyController::class, 'sendOTP']);
         Route::post('/otp-verify/{otp}', [OtpverifyController::class, 'otpVerify']);
@@ -45,10 +49,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
-Route::get('/payment-gateways', [ListapiController::class, 'paymentGateway']);
-Route::get('/labels', [ListapiController::class, 'userlabelList']);
-Route::get('/memberships', [ListapiController::class, 'membershipList']);
+Route::get('/clubs', [ListapiController::class, 'clubList']);
+Route::get('/paymentmethod', [ListapiController::class, 'paymentMethodList']);
 
-Route::get('/option/agora', [OptionapiController::class, 'agora']);
-Route::get('/option/daimond-rate', [OptionapiController::class, 'daimondRate']);
-Route::get('/option/daimondwidthdraw-rate', [OptionapiController::class, 'daimondWidthRate']);

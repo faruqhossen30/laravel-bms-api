@@ -32,6 +32,18 @@
           <span class="link-title">Payment Gateway</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{route('deposit.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="dollar-sign"></i>
+          <span class="link-title">Deposit</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('transactions')}}" class="nav-link">
+          <i class="link-icon" data-feather="dollar-sign"></i>
+          <span class="link-title">Transactions</span>
+        </a>
+      </li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
@@ -45,6 +57,28 @@
             </li>
             <li class="nav-item">
               <a href="{{route('team.index')}}" class="nav-link {{ active_class(['email/read']) }}">Teams</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link {{ active_class(['email/compose']) }}">Compose</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+
+      <li class="nav-item {{ active_class(['email/*']) }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#users" role="button" aria-expanded="{{ is_active_route(['users/*']) }}" aria-controls="users">
+          <i class="link-icon" data-feather="users"></i>
+          <span class="link-title">Users</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse {{ show_class(['users/*']) }}" id="users">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{route('user.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">All Users</a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('clublist')}}" class="nav-link {{ active_class(['email/read']) }}">Clubs</a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link {{ active_class(['email/compose']) }}">Compose</a>

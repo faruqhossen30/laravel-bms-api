@@ -1,24 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\API\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\PaymentGateway;
+use App\Models\Deposit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PaymentgatewayController extends Controller
+class DepositController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list = PaymentGateway::get();
-        // return $list;
-        return view('admin.paymentgateway.index', compact('list'));
+        $diposits = Deposit::where('user_id', $request->user()->id)->get();
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'data' => $diposits
+        ]);
     }
 
     /**
@@ -28,7 +31,7 @@ class PaymentgatewayController extends Controller
      */
     public function create()
     {
-        return view('admin.paymentgateway.create');
+        //
     }
 
     /**
@@ -39,18 +42,36 @@ class PaymentgatewayController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $request->validate([
-            'bank'=>'required',
-            'type'=>'required',
-            'number'=>'required',
+            'method'=> 'required',
+            'amount'=> 'required',
+            'from_account'=> 'required',
+            'to_account'=> 'required',
+            'transaction_id'=> 'required',
         ]);
 
-        PaymentGateway::create([
-            'bank'=>$request->bank,
-            'type'=>$request->type,
-            'number'=>$request->number,
+        $data = [
+            'user_id'=> $request->user()->id,
+            'method'=> $request->method,
+            'amount'=> $request->amount,
+            'from_account'=> $request->from_account,
+            'to_account'=> $request->to_account,
+            'transaction_id'=> $request->transaction_id
+        ];
+
+
+        $diposit = Deposit::create($data);
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'data' => $diposit
         ]);
-        return redirect()->route('paymentgateway.index');
+
+
+
+        //
     }
 
     /**
@@ -95,7 +116,6 @@ class PaymentgatewayController extends Controller
      */
     public function destroy($id)
     {
-        PaymentGateway::firstWhere('id',$id)->delete();
-        return redirect()->route('paymentgateway.index');
+        //
     }
 }
