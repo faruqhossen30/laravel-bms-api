@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AgoraController;
+use App\Http\Controllers\Admin\AutoquestionController;
 use App\Http\Controllers\Admin\ClubController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\LabelController;
+use App\Http\Controllers\Admin\MatcheController;
+use App\Http\Controllers\Admin\MatchequestionController;
+use App\Http\Controllers\Admin\MatchequestionoptionController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
 use App\Http\Controllers\Admin\SettingController;
@@ -40,6 +44,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/setting/footer-notice', [SettingController::class, 'footerNotice'])->name('admin.setting.footernotice');
     // Users
     Route::resource('user',UserController::class);
+    Route::resource('matche',MatcheController::class);
+    Route::resource('autoquestion',AutoquestionController::class);
+
+    Route::get('matche/{id}/matchequestion/create',[MatchequestionController::class, 'create'])->name('matchequestion.create');
+    Route::post('matche/{id}/matchequestion/create',[MatchequestionController::class, 'store'])->name('matchequestion.store');
+
+    Route::get('matche/{matche_id}/question/{question_id}/option/create',[MatchequestionoptionController::class, 'create'])->name('questionoption.create');
+    Route::post('matche/{matche_id}/question/{question_id}/option/create',[MatchequestionoptionController::class, 'store'])->name('questionoption.store');
+
     Route::get('/clubs', [ClubController::class, 'index'])->name('clublist');
 
     Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');

@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
+use App\Http\Controllers\API\NoticeController;
 use App\Http\Controllers\API\OptionapiController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\DepositController;
@@ -50,5 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/clubs', [ListapiController::class, 'clubList']);
+Route::get('/matches', [ListapiController::class, 'matchList']);
+Route::get('/games', [ListapiController::class, 'gameList']);
+
 Route::get('/paymentmethod', [ListapiController::class, 'paymentMethodList']);
+Route::get('/headernotice', [NoticeController::class, 'headerNotice']);
+Route::get('/footernotice', [NoticeController::class, 'footerNotice']);
 

@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('team_one');
             $table->string('team_two');
-            $table->string('title');
             $table->string('team_one_flag');
             $table->string('team_two_flag');
-            $table->date('date_time');
-            $table->boolean('status');
+            $table->string('statement');
+            $table->unsignedBigInteger('game_id');
+            $table->timestamp('date_time');
+            $table->string('note')->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
