@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('mobile')->unique()->nullable();
             $table->integer('balance')->default(0);
             $table->string('password');
+            $table->unsignedBigInteger('club_id')->nullable();
+            $table->unsignedBigInteger('sponser_id')->nullable();
             // other
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_club')->default(false);

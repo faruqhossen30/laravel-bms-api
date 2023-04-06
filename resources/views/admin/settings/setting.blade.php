@@ -29,11 +29,18 @@
 
                 <a class="nav-link " id="v-deposit-tab" data-bs-toggle="tab" href="#v-deposit" role="tab"
                     aria-controls="v-deposit" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>Deposit Limit</a>
+                            class="me-2"></i>Minimum Deposit</a>
 
                 <a class="nav-link " id="v-withdrawrate-tab" data-bs-toggle="tab" href="#v-withdrawrate" role="tab"
-                    aria-controls="v-withdrawrate" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
-                            class="me-2"></i>Withdraw Limit</a>
+                    aria-controls="v-withdrawrate" aria-selected="false"><span class="input-group"><i
+                            data-feather="dollar-sign" class="me-2"></i>Withdraw Limit</a>
+
+                <a class="nav-link " id="v-clubcommission-tab" data-bs-toggle="tab" href="#v-clubcommission" role="tab"
+                    aria-controls="v-clubcommission" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
+                            class="me-2"></i>Club Commission</a>
+                <a class="nav-link " id="v-sponsercommission-tab" data-bs-toggle="tab" href="#v-sponsercommission" role="tab"
+                    aria-controls="v-sponsercommission" aria-selected="false"><span class="input-group"><i data-feather="dollar-sign"
+                            class="me-2"></i>Sponser Commission</a>
 
 
             </div>
@@ -63,19 +70,22 @@
                 <div class="tab-pane fade" id="v-withdrawrate" role="tabpanel" aria-labelledby="v-withdrawrate-tab">
                     @include('admin.settings.inc.withdrawrate')
                 </div>
+                <div class="tab-pane fade" id="v-clubcommission" role="tabpanel" aria-labelledby="v-clubcommission-tab">
+                    @include('admin.settings.inc.clubcommission')
+                </div>
+                <div class="tab-pane fade" id="v-sponsercommission" role="tabpanel" aria-labelledby="v-sponsercommission-tab">
+                    @include('admin.settings.inc.sponsercommission')
+                </div>
 
             </div>
         </div>
     </div>
 @endsection
 @push('plugin-styles')
-
 @endpush
 
 @push('plugin-scripts')
-
 @endpush
 
 @push('custom-scripts')
-
 @endpush

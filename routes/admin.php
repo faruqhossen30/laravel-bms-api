@@ -59,6 +59,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/setting/daimond-commission', [SettingController::class, 'daimondCommission'])->name('admin.setting.daimondcommission');
     Route::post('/setting/daimond-price', [SettingController::class, 'daimondRate'])->name('admin.setting.daimondrate');
     Route::post('/setting/withdraw-rate', [SettingController::class, 'withdrawRate'])->name('admin.setting.withdrawrate');
+    Route::post('/setting/clubcommission', [SettingController::class, 'clubCommission'])->name('admin.setting.clubcommission');
+    Route::post('/setting/sponsercommission', [SettingController::class, 'sponserCommission'])->name('admin.setting.sponsercommission');
 
     Route::get('/dashboard', function () {
         return view('admin.dashboard');

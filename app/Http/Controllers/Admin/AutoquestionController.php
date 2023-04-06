@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AutoOption;
 use App\Models\AutoQuestion;
+use App\Models\Game;
 use Illuminate\Http\Request;
 
 class AutoquestionController extends Controller
@@ -26,7 +28,8 @@ class AutoquestionController extends Controller
      */
     public function create()
     {
-        //
+        $games = Game::get();
+        return view('admin.autoquestion.create', compact('games'));
     }
 
     /**
@@ -37,7 +40,33 @@ class AutoquestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->all();
+        $request->validate([
+            'title' => 'required',
+            'game_id' => 'required',
+            'status' => 'required',
+
+            'option.*.name' => 'required',
+            'option.*.bet_rate' => 'required'
+        ]);
+
+       $question = AutoQuestion::create([
+            'title' => $request->title,
+            'game_id' => $request->game_id,
+            'game_name' => 'some',
+            'status' => $request->status,
+        ]);
+
+        foreach ($request->option as $key => $value) {
+            AutoOption::create([
+                'auto_question_id' => $question->id,
+                'title' => $value['name'],
+                'bet_rate' => $value['bet_rate'],
+                'status' => $value['status']
+            ]);
+        }
+
+        return redirect()->route('autoquestion.index');
     }
 
     /**
@@ -49,6 +78,9 @@ class AutoquestionController extends Controller
     public function show($id)
     {
         //
+        $question = AutoQuestion::with('options')->firstWhere('id',$id);
+        // return $question;
+        return view('admin.autoquestion.show', compact('question'));
     }
 
     /**
@@ -59,7 +91,10 @@ class AutoquestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $games = Game::get();
+        $question = AutoQuestion::with('options')->firstWhere('id', $id);
+        // return $question;
+        return view('admin.autoquestion.edit', compact('games','question'));
     }
 
     /**
@@ -71,7 +106,36 @@ class AutoquestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request->all();
+        $request->validate([
+            'title' => 'required',
+            'game_id' => 'required',
+            'status' => 'required',
+            'option.*.name' => 'required',
+            'option.*.bet_rate' => 'required'
+        ]);
+
+       $update = AutoQuestion::firstWhere('id', $id)->update([
+            'title' => $request->title,
+            'game_id' => $request->game_id,
+            'game_name' => 'some',
+            'status' => $request->status,
+        ]);
+
+        if($update){
+            AutoOption::where('auto_question_id', $id)->delete();
+            foreach ($request->option as $key => $value) {
+                AutoOption::create([
+                    'auto_question_id' => $id,
+                    'title' => $value['name'],
+                    'bet_rate' => $value['bet_rate'],
+                    'status' => $value['status']
+                ]);
+            }
+        }
+
+
+        return redirect()->route('autoquestion.index');
     }
 
     /**

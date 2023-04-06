@@ -5,6 +5,7 @@ use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
 use App\Http\Controllers\API\NoticeController;
 use App\Http\Controllers\API\OptionapiController;
+use App\Http\Controllers\API\User\BetController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\DepositController;
 use App\Http\Controllers\API\User\ProfileController;
@@ -37,6 +38,8 @@ Route::middleware('auth:sanctum')->group(function () {
         // User
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);
+
+        Route::post('/bet', [BetController::class, 'store']);
         // OTP
         Route::post('/send-otp', [OtpverifyController::class, 'sendOTP']);
         Route::post('/otp-verify/{otp}', [OtpverifyController::class, 'otpVerify']);

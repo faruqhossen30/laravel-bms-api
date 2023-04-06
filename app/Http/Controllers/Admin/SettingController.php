@@ -80,4 +80,23 @@ class SettingController extends Controller
         option(['footer_notice' => $request->footer_notice]);
         return redirect()->route('admin.settings');
     }
+
+    public function clubCommission(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'club_commission'=>'required'
+        ]);
+        option(['club_commission' => $request->club_commission]);
+        return redirect()->route('admin.settings');
+    }
+    public function sponserCommission(Request $request)
+    {
+        // return $request->all();
+        $request->validate([
+            'sponser_commission'=>'required'
+        ]);
+        option(['sponser_commission' => $request->sponser_commission]);
+        return redirect()->route('admin.settings');
+    }
 }

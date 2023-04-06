@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('auto_questions', function (Blueprint $table) {
+        Schema::create('auto_options', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('auto_question_id');
             $table->string('title');
-            $table->unsignedBigInteger('game_id');
-            $table->string('game_name');
-            $table->boolean('status')->default(true);
+            $table->float('bet_rate');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auto_questions');
+        Schema::dropIfExists('auto_options');
     }
 };

@@ -19,79 +19,21 @@
                     </div>
                     <hr>
 
-                    <form action="{{ route('matche.store') }}" method="POST" class="forms-sample">
+                    <form action="{{ route('autoquestion.store') }}" method="POST" class="forms-sample">
                         @csrf
                         <div class="row">
-                            <div class="col-sm-6">
-                                <x-input-text label="Team One" placeholder="Team One" name="team_one" />
-                            </div>
-                            <div class="col-sm-6">
-                                <x-input-text label="Team Two" placeholder="Team Two" name="team_two" />
-                            </div>
-
+                            <x-input-text label="Question" placeholder="Question" name="title" />
                             <div class="col-sm-6">
                                 <div class="mb-3">
-                                    <label for="fornumber" class="form-label">Team One Flag</label>
-                                    <select name="team_one_flag" id=""
-                                        class="form-control @error('team_one_flag') is-invalid @enderror">
-                                        <option value="">select</option>
-                                        @foreach ($countries as $item)
-                                            <option value="{{ $item->flag_url }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('team_one_flag')
-                                        <span class="text-danger">{{ $message }}</span> <br>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="fornumber" class="form-label">Team Two Flag</label>
-                                    <select name="team_two_flag" id=""
-                                        class="form-control @error('team_two_flag') is-invalid @enderror">
-                                        <option value="">select</option>
-                                        @foreach ($countries as $item)
-                                            <option value="{{ $item->flag_url }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('team_two_flag')
-                                        <span class="text-danger">{{ $message }}</span> <br>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <x-input-text label="Statement" placeholder="Statement" name="statement" />
-                            </div>
-                            <div class="col-sm-6">
-                                <x-input-text label="Date & Time" placeholder="Date & Time" name="date_time"
-                                    type="datetime-local" />
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="formatchtype" class="form-label">Match Type</label>
-                                    <select name="match_type" id="formatchtype"
-                                        class="form-control @error('match_type') is-invalid @enderror">
+                                    <label for="formatchtype" class="form-label">Game</label>
+                                    <select name="game_id" id="formatchtype"
+                                        class="form-control @error('game_id') is-invalid @enderror">
                                         <option value="">select</option>
                                         @foreach ($games as $game)
-                                            <option value="{{$game->id}}">{{$game->name}}</option>
+                                            <option value="{{ $game->id }}">{{ $game->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('match_type')
-                                        <span class="text-danger">{{ $message }}</span> <br>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="auto_question" class="form-label">Auto Question</label>
-                                    <select name="auto_question" id="auto_question"
-                                        class="form-control @error('auto_question') is-invalid @enderror">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
-                                    </select>
-                                    @error('auto_question')
+                                    @error('game_id')
                                         <span class="text-danger">{{ $message }}</span> <br>
                                     @enderror
                                 </div>
@@ -112,10 +54,66 @@
 
 
                         </div>
+                        <div class="row">
+                            <div>
+                                <button id="add_option_more" type="button" class="btn btn-sm btn-primary btn-icon-text">
+                                    <i class="btn-icon-prepend" data-feather="plus-circle"></i>
+                                    Add Option
+                                </button>
+                            </div>
+                            <div class="table-responsive pt-3">
+                                <table class="table table-bordered"  id="question-options">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Number
+                                            </th>
+                                            <th>
+                                                Bank
+                                            </th>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
+                                        <tr>
+                                            <td><input type="text" name="option[0][name]" value="#team-1#"
+                                                    placeholder="Enter Option" class="form-control" required /></td>
+                                            <td><input type="number" step="any" name="option[0][bet_rate]"
+                                                    placeholder="Enter Bet Rate" class="form-control" required /></td>
+                                            <td><select name="option[0][status]" class="form-control">
+                                                    <option value="1" selected>Active</option>
+                                                    <option value="0">Deactive</option>
+                                                </select></td>
+                                            <td><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="option[1][name]" value="#team-2#"
+                                                    placeholder="Enter Option" class="form-control" required /></td>
+                                            <td><input type="number" step="any" name="option[1][bet_rate]"
+                                                    placeholder="Enter Bet Rate" class="form-control" required /></td>
+                                            <td><select name="option[1][status]" class="form-control">
+                                                    <option value="1" selected>Active</option>
+                                                    <option value="0">Deactive</option>
+                                                </select></td>
+                                            <td><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
+                                        </tr>
 
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <input type="hidden" value="1" id="option-last-id">
+                        <div class="py-2">
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
                         <button class="btn btn-secondary">Cancel</button>
+                        </div>
                     </form>
 
                 </div>
@@ -130,4 +128,24 @@
 @endpush
 
 @push('custom-scripts')
+    <script>
+        $(document).ready(function() {
+            //Auto Question
+            var i = $('#option-last-id').val();
+            $("#add_option_more").click(function() {
+                ++i;
+                $("#question-options").append('<tr><td><input type="text" name="option[' + i +
+                    '][name]" placeholder="Enter Option" class="form-control" required/></td><td><input type="number" step="any" name="option[' +
+                    i +
+                    '][bet_rate]" placeholder="Enter Bet Rate" class="form-control" required/></td><td><select name="option[' +
+                    i +
+                    '][status]" class="form-control"><option value="1" selected>Active</option><option value="0">Deactive</option></select></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>'
+                );
+            });
+
+            $(document).on('click', '.remove-tr', function(event) {
+                $(this).parents('tr').remove();
+            });
+        });
+    </script>
 @endpush

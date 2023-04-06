@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-body">
                     <div>
-                        <a href="{{route('matche.create')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
+                        <a href="{{route('autoquestion.create')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
                             <i class="btn-icon-prepend" data-feather="plus-circle"></i>
                             Create Auto Question
                         </a>
@@ -25,13 +25,13 @@
                                         #
                                     </th>
                                     <th>
-                                        Number
+                                        Question
                                     </th>
                                     <th>
-                                        Bank
+                                        Game
                                     </th>
                                     <th>
-                                        Type
+                                        Status
                                     </th>
                                     <th>
                                         Action
@@ -48,19 +48,27 @@
                                             {{ $serial++ }}
                                         </td>
                                         <td>
-                                            {{ $item->number }}
+                                            {{ $item->title }}
                                         </td>
                                         <td>
-                                            {{ $item->bank }}
+                                            {{ $item->game_name }}
                                         </td>
                                         <td>
-                                            {{ $item->type }}
+                                            @if ($item->status)
+                                            <span class="badge bg-success">Active</span>
+                                            @else
+                                            <span class="badge bg-danger">Deactive</span>
+                                            @endif
+                                            {{-- {{ $item->status }} --}}
                                         </td>
                                         <td>
-                                            {{-- <a href="{{route('paymentgateway.edit', $item->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
+                                            <a href="{{route('autoquestion.show', $item->id)}}" type="button" class="btn btn-success btn-icon btn-xs">
+                                                <i data-feather="eye"></i>
+                                            </a>
+                                            <a href="{{route('autoquestion.edit', $item->id)}}" type="button" class="btn btn-primary btn-icon btn-xs">
                                                 <i data-feather="check-square"></i>
-                                            </a> --}}
-                                            <form action="{{route('paymentgateway.destroy', $item->id)}}" method="post" style="display: inline">
+                                            </a>
+                                            <form action="{{route('autoquestion.destroy', $item->id)}}" method="post" style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('Sure ! Delete label ?')" class="btn btn-danger btn-xs btn-icon">

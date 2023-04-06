@@ -20,7 +20,9 @@ class AuthController extends Controller
         $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:15', 'unique:users'],
-            'eamil' => ['required', 'string', 'max:15', 'unique:users'],
+            'mobile' => ['required', 'string', 'max:15', 'unique:users'],
+            'email' => ['required', 'string', 'unique:users'],
+            'club_id' => ['required'],
             'password' => ['required', 'string', 'min:4'],
         ]);
         if ($validator->fails()) {
@@ -28,8 +30,11 @@ class AuthController extends Controller
         }
         $user = User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'mobile' => $data['mobile'],
+            'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'club_id' => $data['club_id'],
             'status' => true,
         ]);
 

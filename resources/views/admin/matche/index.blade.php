@@ -81,12 +81,12 @@
                                             <span>{{ $question->title }}</span>
                                             <div class="">
                                                 {{-- <x-a-button text='Primary' /> --}}
-                                                <a href="{{ route('questionoption.create', ['matche_id' => $match->id, 'question_id' => $question->id]) }}"
+                                                {{-- <a href="{{ route('questionoption.create', ['matche_id' => $match->id, 'question_id' => $question->id]) }}"
                                                     type="button" class="btn btn-primary btn-sm btn-icon-text"
                                                     style="">
                                                     <i class="btn-icon-prepend" data-feather="plus-circle"></i>
                                                     Add Option
-                                                </a>
+                                                </a> --}}
                                                 <a href="#" type="button"
                                                     class="btn btn-success btn-sm btn-icon-text">
                                                     <i class="btn-icon-prepend" data-feather="check-square"></i>
@@ -139,7 +139,7 @@
                                                                     {{ $option->bet_rate }}
                                                                 </td>
                                                                 <td>
-                                                                    $206,850
+                                                                   0
                                                                 </td>
                                                                 <td>
                                                                     June 21, 2010
