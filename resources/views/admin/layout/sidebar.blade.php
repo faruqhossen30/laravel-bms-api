@@ -95,7 +95,7 @@
               <a href="{{route('clublist')}}" class="nav-link {{ active_class(['email/read']) }}">Clubs</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link {{ active_class(['email/compose']) }}">Compose</a>
+              <a href="{{route('adminlist')}}" class="nav-link {{ active_class(['email/compose']) }}">Admin</a>
             </li>
           </ul>
         </div>

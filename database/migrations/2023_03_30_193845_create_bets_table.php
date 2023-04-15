@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('matche_id');
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('option_id');
-            $table->unsignedBigInteger('club_id');
+            $table->unsignedBigInteger('club_id')->nullable();
             $table->unsignedBigInteger('sponsor_id')->nullable();
             $table->float('bet_amount');
             $table->float('bet_rate');

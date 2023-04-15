@@ -11,11 +11,20 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <div>
-                        <a href="{{route('deposit.create')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
-                            <i class="btn-icon-prepend" data-feather="plus-circle"></i>
-                            Add Payment Gateway
-                        </a>
+                    <div class="d-flex justify-content-between">
+                        <form action="" method="get" class="d-flex">
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                            <input type="text" class="form-control mx-1" name="username" placeholder="Mobile">
+                            <select name="" id="" class="form-control">
+                                <option value="1">Active</option>
+                                <option value="0">Deactive</option>
+                            </select>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-icon-text mx-1">
+                                    Filter
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">

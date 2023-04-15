@@ -136,24 +136,30 @@
                                                                     {{ $option->title }}
                                                                 </td>
                                                                 <td>
-                                                                    {{ $option->bet_rate }}
+                                                                    <a href="#" class="badge bg-primary">{{ $option->bet_rate }}</a>
+
                                                                 </td>
                                                                 <td>
                                                                    0
                                                                 </td>
                                                                 <td>
-                                                                    June 21, 2010
+                                                                    00
                                                                 </td>
                                                                 <td>
-                                                                    June 21, 2010
+                                                                    0
                                                                 </td>
                                                                 <td>
-                                                                    <button type="button" class="btn btn-sm btn-primary btn-icon">
+                                                                    <a href=""><span class="badge bg-primary">Win</span></a>
+                                                                    <a href=""><span class="badge bg-primary">Bet</span></a>
+                                                                    <a href=""><span class="badge bg-primary">Stop</span></a>
+                                                                    <a href=""><span class="badge bg-primary">Hide</span></a>
+                                                                    <a href=""><span class="badge bg-primary">Close</span></a>
+                                                                    {{-- <button type="button" class="btn btn-sm btn-primary btn-icon">
                                                                         <i data-feather="check-square"></i>
                                                                     </button>
                                                                     <button type="button" class="btn btn-sm btn-danger btn-icon">
                                                                         <i data-feather="trash"></i>
-                                                                    </button>
+                                                                    </button> --}}
                                                                 </td>
                                                             </tr>
                                                         @endforeach

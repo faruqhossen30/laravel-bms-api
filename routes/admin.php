@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AgoraController;
 use App\Http\Controllers\Admin\AutoquestionController;
 use App\Http\Controllers\Admin\ClubController;
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('matche/{matche_id}/question/{question_id}/option/create',[MatchequestionoptionController::class, 'store'])->name('questionoption.store');
 
     Route::get('/clubs', [ClubController::class, 'index'])->name('clublist');
+    Route::get('/admins', [AdminController::class, 'adminList'])->name('adminlist');
 
     Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');
     Route::post('/setting/daimond-commission', [SettingController::class, 'daimondCommission'])->name('admin.setting.daimondcommission');

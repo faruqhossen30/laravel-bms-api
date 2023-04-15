@@ -3,7 +3,8 @@
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">updata</li>
+            <li class="breadcrumb-item active" aria-current="page">Autoquestion</li>
+            <li class="breadcrumb-item active" aria-current="page">List</li>
         </ol>
     </nav>
 

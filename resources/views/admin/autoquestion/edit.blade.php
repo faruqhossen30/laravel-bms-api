@@ -3,7 +3,8 @@
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">updata</li>
+            <li class="breadcrumb-item active" aria-current="page">Autoquestion</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
         </ol>
     </nav>
 
@@ -12,9 +13,9 @@
             <div class="card">
                 <div class="card-body p-3">
                     <div>
-                        <a href="{{ route('matche.index') }}" type="button" class="btn btn-sm btn-primary btn-icon-text">
+                        <a href="{{ route('autoquestion.index') }}" type="button" class="btn btn-sm btn-primary btn-icon-text">
                             <i class="btn-icon-prepend" data-feather="list"></i>
-                            Match List
+                            Autoquestion List
                         </a>
                     </div>
                     <hr>

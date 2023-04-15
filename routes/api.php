@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);
 
+        Route::get('/bets', [BetController::class, 'index']);
         Route::post('/bet', [BetController::class, 'store']);
         // OTP
         Route::post('/send-otp', [OtpverifyController::class, 'sendOTP']);

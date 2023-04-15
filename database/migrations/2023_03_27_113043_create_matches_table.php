@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('team_one');
             $table->string('team_two');
-            $table->string('team_one_flag');
-            $table->string('team_two_flag');
+            $table->string('team_one_flag')->nullable();
+            $table->string('team_two_flag')->nullable();
             $table->string('statement');
             $table->unsignedBigInteger('game_id');
             $table->timestamp('date_time');

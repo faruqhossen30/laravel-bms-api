@@ -53,10 +53,10 @@
                         </div>
                     </div>
                     <div class="py-2">
-                        <button type="button" class="btn btn-success btn-icon-text btn-sm">
+                        <a href="{{route('autoquestion.edit', $question->id)}}" type="button" class="btn btn-success btn-icon-text btn-sm">
                             <i class="btn-icon-prepend" data-feather="check-square"></i>
                             Edit
-                          </button>
+                        </a>
                         <a href="{{route('autoquestion.index')}}" class="btn btn-danger btn-icon-text btn-sm">
                             <i class="btn-icon-prepend" data-feather="arrow-left-circle"></i>
                             Back
