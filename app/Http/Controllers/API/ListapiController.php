@@ -46,6 +46,17 @@ class ListapiController extends Controller
         ]);
     }
 
+    public function matchListByGameid($gameid)
+    {
+        $matches = Matche::with('questions')->with('questions.options')->where('game_id', $gameid)->get();
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'data' => $matches
+        ]);
+    }
+
     public function gameList()
     {
        $games = Game::get();

@@ -38,6 +38,13 @@
           <span class="link-title">Deposit</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a href="{{route('withdraw.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="dollar-sign"></i>
+          <span class="link-title">Withdraw</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a href="{{route('transactions')}}" class="nav-link">
           <i class="link-icon" data-feather="dollar-sign"></i>
@@ -48,6 +55,12 @@
         <a href="{{route('matche.index')}}" class="nav-link">
           <i class="link-icon" data-feather="dollar-sign"></i>
           <span class="link-title">Match</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{route('bet.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="dollar-sign"></i>
+          <span class="link-title">Bets</span>
         </a>
       </li>
 

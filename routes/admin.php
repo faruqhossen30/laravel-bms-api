@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AgoraController;
 use App\Http\Controllers\Admin\AutoquestionController;
+use App\Http\Controllers\Admin\BetController;
 use App\Http\Controllers\Admin\ClubController;
 use App\Http\Controllers\Admin\DepositController;
 use App\Http\Controllers\Admin\GameController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WithdrawController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('game', GameController::class);
     Route::resource('team', TeamController::class);
     Route::resource('deposit', DepositController::class);
+    Route::resource('withdraw', WithdrawController::class);
 
     Route::get('transactions',[TransactionController::class, 'index'])->name('transactions');
 
@@ -46,6 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Users
     Route::resource('user',UserController::class);
     Route::resource('matche',MatcheController::class);
+    Route::resource('bet',BetController::class);
     Route::resource('autoquestion',AutoquestionController::class);
 
     Route::get('matche/{id}/matchequestion/create',[MatchequestionController::class, 'create'])->name('matchequestion.create');

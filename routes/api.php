@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\WithdrawController;
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
@@ -38,6 +39,8 @@ Route::middleware('auth:sanctum')->group(function () {
         // User
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);
+        // Withwraw
+        Route::post('/withdraw', [WithdrawController::class, 'store']);
 
         Route::get('/bets', [BetController::class, 'index']);
         Route::post('/bet', [BetController::class, 'store']);
@@ -56,6 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('/clubs', [ListapiController::class, 'clubList']);
 Route::get('/matches', [ListapiController::class, 'matchList']);
+Route::get('/matches/{gameid}', [ListapiController::class, 'matchListByGameid']);
 Route::get('/games', [ListapiController::class, 'gameList']);
 
 Route::get('/paymentmethod', [ListapiController::class, 'paymentMethodList']);
