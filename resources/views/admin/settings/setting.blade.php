@@ -14,10 +14,8 @@
                             class="me-2"></i>Website Title</span></a>
                 <a class="nav-link" id="v-footernotice-tab" data-bs-toggle="tab" href="#v-footernotice" role="tab"
                     aria-controls="v-home" aria-selected="true"><span class="input-group"><i data-feather="chrome"
-                            class="me-2"></i>footernotice Title</span></a>
-                <a class="nav-link " id="v-agora-tab" data-bs-toggle="tab" href="#v-agora" role="tab"
-                    aria-controls="v-agora" aria-selected="false"><span class="input-group"><i data-feather="box"
-                            class="me-2"></i>Agora</a>
+                            class="me-2"></i>Footer Notice</span></a>
+
 
                 <a class="nav-link " id="v-contact-tab" data-bs-toggle="tab" href="#v-contact" role="tab"
                     aria-controls="v-contact" aria-selected="false"><span class="input-group"><i data-feather="home"
@@ -52,10 +50,6 @@
                 </div>
                 <div class="tab-pane fade show" id="v-footernotice" role="tabpanel" aria-labelledby="v-footernotice-tab">
                     @include('admin.settings.inc.footernotice')
-                </div>
-
-                <div class="tab-pane fade" id="v-agora" role="tabpanel" aria-labelledby="v-agora-tab">
-                    @include('admin.settings.inc.agora')
                 </div>
                 <div class="tab-pane fade" id="v-contact" role="tabpanel" aria-labelledby="v-contact-tab">
                     @include('admin.settings.inc.contact')

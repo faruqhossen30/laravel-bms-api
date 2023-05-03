@@ -83,7 +83,7 @@
                                     <tbody>
 
                                         <tr>
-                                            <td><input type="text" name="option[0][name]" value="#team-1#"
+                                            <td><input type="text" name="option[0][name]" value="Team-1"
                                                     placeholder="Enter Option" class="form-control" required /></td>
                                             <td><input type="number" step="any" name="option[0][bet_rate]"
                                                     placeholder="Enter Bet Rate" class="form-control" required /></td>
@@ -94,7 +94,7 @@
                                             <td><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="option[1][name]" value="#team-2#"
+                                            <td><input type="text" name="option[1][name]" value="Team-2"
                                                     placeholder="Enter Option" class="form-control" required /></td>
                                             <td><input type="number" step="any" name="option[1][bet_rate]"
                                                     placeholder="Enter Bet Rate" class="form-control" required /></td>

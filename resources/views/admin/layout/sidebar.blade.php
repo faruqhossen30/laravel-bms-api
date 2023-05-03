@@ -1,7 +1,7 @@
 <nav class="sidebar">
   <div class="sidebar-header">
     <a href="#" class="sidebar-brand">
-      AUTO<span>LIVE</span>
+      BPL<span>365</span>
     </a>
     <div class="sidebar-toggler not-active">
       <span></span>
@@ -11,7 +11,6 @@
   </div>
   <div class="sidebar-body">
     <ul class="nav">
-      <li class="nav-item nav-category">Main</li>
       <li class="nav-item {{ active_class(['/']) }}">
         <a href="{{ url('/admin/dashboard') }}" class="nav-link">
           <i class="link-icon" data-feather="box"></i>
@@ -113,6 +112,20 @@
           </ul>
         </div>
       </li>
+      <hr>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+            <i class="link-icon" data-feather="power"></i>
+            <span class="link-title">Log Out</span>
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </li>
 
 
 
@@ -123,7 +136,7 @@
 
 
 
-      <li class="nav-item nav-category">web apps</li>
+      {{-- <li class="nav-item nav-category">web apps</li>
       <li class="nav-item {{ active_class(['email/*']) }}">
         <a class="nav-link" data-bs-toggle="collapse" href="#email" role="button" aria-expanded="{{ is_active_route(['email/*']) }}" aria-controls="email">
           <i class="link-icon" data-feather="mail"></i>
@@ -419,7 +432,7 @@
           <i class="link-icon" data-feather="hash"></i>
           <span class="link-title">Documentation</span>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </div>
 </nav>
