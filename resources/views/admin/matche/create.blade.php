@@ -64,8 +64,10 @@
                                 <x-input-text label="Statement" placeholder="Statement" name="statement" />
                             </div>
                             <div class="col-sm-6">
-                                <x-input-text label="Date & Time" placeholder="Date & Time" name="date_time"
-                                    type="datetime-local" />
+                                <label class="form-label" for="">Date & Time</label>
+                                {{-- <x-input-text label="Date & Time" placeholder="Date & Time" name="date_time"
+                                    type="datetime-local" /> --}}
+                                    <input class="form-control" type="datetime-local" name="date_time" id="">
                             </div>
 
                             <div class="col-sm-6">
@@ -104,15 +106,14 @@
                                     <label for="status" class="form-label">Status</label>
                                     <select name="status" id="status"
                                         class="form-control @error('status') is-invalid @enderror">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="live">Live</option>
+                                        <option value="upcoming">Upcoming</option>
                                     </select>
                                     @error('status')
                                         <span class="text-danger">{{ $message }}</span> <br>
                                     @enderror
                                 </div>
                             </div>
-
 
                         </div>
 

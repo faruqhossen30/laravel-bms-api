@@ -63,6 +63,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('admin/js/app.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/store.legacy.min.js') }}"></script>
     <!-- end base js -->
 
     <!-- plugin js -->

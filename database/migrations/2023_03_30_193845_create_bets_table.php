@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('match_title');
             $table->string('question_title');
             $table->string('option_title');
-            $table->string('status');
+            $table->enum('status',['win','loss','refund','pending'])->default('pending');
             $table->timestamps();
         });
     }

@@ -34,9 +34,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $serial = 1;
+                                    @endphp
                                     @foreach ($question->options as $option)
                                         <tr class="text-end">
-                                            <td class="text-start">1</td>
+                                            <td class="text-start">{{$serial++}}</td>
                                             <td class="text-start">{{ $option->title }}</td>
                                             <td>{{ $option->bet_rate }}</td>
                                             <td>

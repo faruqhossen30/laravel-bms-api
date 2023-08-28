@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\WithdrawController;
 use App\Http\Controllers\API\Auth\AuthController;
 use App\Http\Controllers\API\Auth\OtpverifyController;
 use App\Http\Controllers\API\ListapiController;
@@ -10,6 +9,8 @@ use App\Http\Controllers\API\User\BetController;
 use App\Http\Controllers\API\User\BuydaimondController;
 use App\Http\Controllers\API\User\DepositController;
 use App\Http\Controllers\API\User\ProfileController;
+use App\Http\Controllers\API\User\TransactionController;
+use App\Http\Controllers\API\User\WithdrawController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,15 +41,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/deposit', [DepositController::class, 'store']);
         Route::get('/deposits', [DepositController::class, 'index']);
         // Withwraw
+        Route::get('/withdraws', [WithdrawController::class, 'index']);
         Route::post('/withdraw', [WithdrawController::class, 'store']);
-
         Route::get('/bets', [BetController::class, 'index']);
         Route::post('/bet', [BetController::class, 'store']);
-        // OTP
-        Route::post('/send-otp', [OtpverifyController::class, 'sendOTP']);
-        Route::post('/otp-verify/{otp}', [OtpverifyController::class, 'otpVerify']);
-        Route::post('/change-number/{number}', [ProfileController::class, 'changeNumber']);
-        Route::post('buy-daimond', [BuydaimondController::class, 'buyDaimond']);
+        Route::get('/transactions', [TransactionController::class, 'index']);
+
         // Update
         Route::post('/avatar', [ProfileController::class, 'avatar']);
         Route::post('/change-name', [ProfileController::class, 'changeName']);

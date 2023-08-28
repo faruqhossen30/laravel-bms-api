@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AutoOption;
+use App\Models\AutoQuestion;
 use App\Models\Game;
 use App\Models\Matche;
+use App\Models\MatcheQuestion;
+use App\Models\QuestionOption;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
@@ -17,7 +21,11 @@ class MatcheController extends Controller
      */
     public function index()
     {
-        $matches = Matche::with('questions')->with('questions.options')->paginate();
+        $matches = Matche::with(['questions', 'matchbets'])
+            ->with(['questions.options', 'questions.questionbet'])
+            ->with(['questions.options.optionbet'])
+            ->orderBy('created_at', 'desc')
+            ->paginate();
         // return $matches;
         return view('admin.matche.index', compact('matches'));
     }
@@ -64,7 +72,36 @@ class MatcheController extends Controller
             'note' => $request->note,
             'status' => $request->status,
         ];
-        Matche::create($data);
+        $matche = Matche::create($data);
+
+        if ($request->auto_question == 1) {
+            $matchequestions = AutoQuestion::where('game_id', $request->game_id)->get();
+
+            foreach ($matchequestions as $question) {
+                $mq = MatcheQuestion::create([
+                    'title' => $question['title'],
+                    'matche_id' => $matche->id,
+                    'is_hide' => false,
+                    'status' => true,
+                ]);
+
+                $options = AutoOption::where('auto_question_id', $question->id)->get();
+
+                foreach ($options as $option) {
+                    QuestionOption::create([
+                        'matche_id' => $matche->id,
+                        'matche_question_id' => $mq->id,
+                        'title' => $option['title'],
+                        'bet_rate' => $option['bet_rate'],
+                        'is_hide' => false,
+                        'is_win' => false,
+                        'is_loss' => false,
+                        'status' => true
+                    ]);
+                }
+            }
+        }
+
         return redirect()->route('matche.index');
     }
 
@@ -76,7 +113,13 @@ class MatcheController extends Controller
      */
     public function show($id)
     {
-        //
+        $match = Matche::firstWhere('id', $id);
+        $check =  $match->hide;
+
+        $update = $match->update([
+            'hide' => !$match->hide,
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -92,7 +135,7 @@ class MatcheController extends Controller
         // return $countries;
 
         $match = Matche::firstWhere('id', $id);
-        return view('admin.matche.edit',compact('match','countries', 'games'));
+        return view('admin.matche.edit', compact('match', 'countries', 'games'));
     }
 
     /**
@@ -137,7 +180,18 @@ class MatcheController extends Controller
      */
     public function destroy($id)
     {
-        Matche::firstWhere('id',$id)->delete();
+        Matche::firstWhere('id', $id)->delete();
         return redirect()->route('matche.index');
+    }
+
+    public function changeStatus($id)
+    {
+        $match = Matche::firstWhere('id', $id);
+        //    $check =  $match->status;
+
+        $update = $match->update([
+            'status' => !$match->status,
+        ]);
+        return redirect()->back();
     }
 }

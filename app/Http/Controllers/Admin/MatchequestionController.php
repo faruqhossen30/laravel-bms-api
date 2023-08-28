@@ -48,18 +48,19 @@ class MatchequestionController extends Controller
        $question = MatcheQuestion::create([
             'matche_id' => $request->matche_id,
             'title' => $request->title,
+            'is_hide' => 0,
             'status' => $request->status,
         ]);
 
-        foreach ($request->option as $key => $value) {
-            QuestionOption::create([
-                'matche_id' => $question->matche_id,
-                'matche_question_id' => $question->id,
-                'title' => $value['name'],
-                'bet_rate' => $value['bet_rate'],
-                'status' => $value['status']
-            ]);
-        }
+        // foreach ($request->option as $key => $value) {
+        //     QuestionOption::create([
+        //         'matche_id' => $question->matche_id,
+        //         'matche_question_id' => $question->id,
+        //         'title' => $value['name'],
+        //         'bet_rate' => $value['bet_rate'],
+        //         'status' => $value['status']
+        //     ]);
+        // }
 
         return redirect()->route('matche.index');
     }
@@ -83,7 +84,7 @@ class MatchequestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.matchequestion.create', compact('matche_id'));
     }
 
     /**
@@ -95,7 +96,14 @@ class MatchequestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required'
+        ]);
+
+        MatcheQuestion::firstWhere('id',$id)->update([
+            'title'=>$request->title
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -106,6 +114,19 @@ class MatchequestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        MatcheQuestion::firstWhere('id',$id)->delete();
+        return redirect()->route('matche.index');
+        // return 'matchequestion.destroy';
+    }
+    public function stopStart($id)
+    {
+        $matchQuestion = MatcheQuestion::firstWhere('id', $id);
+        //    $check =  $match->status;
+
+            $update = $matchQuestion->update([
+                'is_hide' =>!$matchQuestion->is_hide,
+            ]);
+
+            return redirect()->route('matche.index');
     }
 }

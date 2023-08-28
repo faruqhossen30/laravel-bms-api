@@ -17,12 +17,20 @@
           <span class="link-title">Dashboard</span>
         </a>
       </li>
-      <li class="nav-item {{ active_class(['/']) }}">
-        <a href="{{route('admin.settings')}}" class="nav-link">
-          <i class="link-icon" data-feather="settings"></i>
-          <span class="link-title">Settings</span>
+      <li class="nav-item">
+        <a href="{{route('matche.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="dollar-sign"></i>
+          <span class="link-title">Match</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{route('bet.index')}}" class="nav-link">
+          <i class="link-icon" data-feather="dollar-sign"></i>
+          <span class="link-title">Bets</span>
+        </a>
+      </li>
+
+
 
 
       <li class="nav-item">
@@ -50,18 +58,7 @@
           <span class="link-title">Transactions</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="{{route('matche.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="dollar-sign"></i>
-          <span class="link-title">Match</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{route('bet.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="dollar-sign"></i>
-          <span class="link-title">Bets</span>
-        </a>
-      </li>
+
 
       <li class="nav-item">
         <a href="{{route('autoquestion.index')}}" class="nav-link">
@@ -104,14 +101,21 @@
               <a href="{{route('user.index')}}" class="nav-link {{ active_class(['email/inbox']) }}">All Users</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('clublist')}}" class="nav-link {{ active_class(['email/read']) }}">Clubs</a>
+              <a href="{{route('club.index')}}" class="nav-link {{ active_class(['email/read']) }}">Clubs</a>
             </li>
             <li class="nav-item">
-              <a href="{{route('adminlist')}}" class="nav-link {{ active_class(['email/compose']) }}">Admin</a>
+              <a href="{{route('admin.index')}}" class="nav-link {{ active_class(['email/compose']) }}">Admin</a>
             </li>
           </ul>
         </div>
       </li>
+      <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{route('admin.settings')}}" class="nav-link">
+          <i class="link-icon" data-feather="settings"></i>
+          <span class="link-title">Settings</span>
+        </a>
+      </li>
+
       <hr>
 
       <li class="nav-item">

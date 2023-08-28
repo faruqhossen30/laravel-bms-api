@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('matche_id')->constrained('matches')->onDelete('cascade');
-            $table->boolean('is_hide')->nullable();
+            $table->boolean('is_hide')->nullable()->default(0);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

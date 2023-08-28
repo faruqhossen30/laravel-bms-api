@@ -17,7 +17,7 @@ class AutoquestionController extends Controller
      */
     public function index()
     {
-        $questions = AutoQuestion::paginate();
+        $questions = AutoQuestion::orderBy('id','desc')->paginate();
         return view('admin.autoquestion.index', compact('questions'));
     }
 
@@ -50,10 +50,12 @@ class AutoquestionController extends Controller
             'option.*.bet_rate' => 'required'
         ]);
 
+        $game = Game::firstWhere('id', $request->game_id);
+
        $question = AutoQuestion::create([
             'title' => $request->title,
             'game_id' => $request->game_id,
-            'game_name' => 'some',
+            'game_name' => $game->name,
             'status' => $request->status,
         ]);
 

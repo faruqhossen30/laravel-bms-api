@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function adminList()
+    public function index()
     {
         return "admin";
     }

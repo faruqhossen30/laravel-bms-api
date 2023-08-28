@@ -52,6 +52,9 @@
                                         Transctions
                                     </th>
                                     <th>
+                                        Time
+                                    </th>
+                                    <th>
                                         Actions
                                     </th>
                                 </tr>
@@ -83,6 +86,11 @@
                                         </td>
                                         <td>
                                             {{ $item->transaction_id }}
+                                        </td>
+                                        <td class=" text-muted tx-13">
+                                            {{ $item->created_at->format('d M Y') }} <br>
+                                            {{ $item->created_at->format('g:i A') }}
+
                                         </td>
                                         <td>
                                             @if ($item->status == false)

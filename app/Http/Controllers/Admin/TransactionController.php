@@ -10,7 +10,7 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with('user')->paginate(25);
+        $transactions = Transaction::with('user')->orderBy('id', 'desc')->paginate(25);
         return view('admin.transaction.index', compact('transactions'));
     }
 }

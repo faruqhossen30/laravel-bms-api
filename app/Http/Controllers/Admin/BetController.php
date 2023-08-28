@@ -15,6 +15,11 @@ class BetController extends Controller
      */
     public function index()
     {
+        // $option = null;
+        // if (isset($_GET['option'])) {
+        //     $count = $_GET['option'];
+        // }
+
        $bets = Bet::with('user')->paginate();
     //    return $bets;
        return view('admin.bet.index', compact('bets'));

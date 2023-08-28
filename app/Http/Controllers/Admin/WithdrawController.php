@@ -82,7 +82,7 @@ class WithdrawController extends Controller
         return response()->json([
             'success' => true,
             'code' => 200,
-            'data' => "Your withdraw is pending."
+            'message' => "Your withdraw is pending."
         ]);
 
 

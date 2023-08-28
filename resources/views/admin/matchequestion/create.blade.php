@@ -37,7 +37,7 @@
                             </div>
 
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div>
                                 <button id="add_option_more" type="button" class="btn btn-sm btn-primary btn-icon-text">
                                     <i class="btn-icon-prepend" data-feather="plus-circle"></i>
@@ -49,10 +49,10 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Number
+                                                Option
                                             </th>
                                             <th>
-                                                Bank
+                                                Rate
                                             </th>
                                             <th>
                                                 Type
@@ -90,7 +90,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <input type="hidden" value="1" id="option-last-id">
                         <button type="submit" class="btn btn-primary me-2">Submit</button>

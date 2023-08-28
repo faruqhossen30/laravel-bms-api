@@ -23,7 +23,9 @@ return new class extends Migration
             $table->unsignedBigInteger('game_id');
             $table->timestamp('date_time');
             $table->string('note')->nullable();
-            $table->boolean('status')->default(false);
+            $table->boolean('is_hide')->default(false);
+            $table->boolean('active')->default(false);
+            $table->enum('status',['live','upcoming','close'])->default('upcoming');
             $table->timestamps();
         });
     }

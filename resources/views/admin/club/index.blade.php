@@ -1,22 +1,19 @@
 @extends('admin.layout.master')
 @section('content')
-    <nav class="page-breadcrumb">
-        <ol class="breadcrumb">
+    <nav class="page-breadcrumb d-flex justify-content-between align-items-center">
+        <ol class="breadcrumb pt-1">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">updata</li>
+            <li class="breadcrumb-item active" aria-current="page">Users / List</li>
         </ol>
+        <a href="{{route('club.create')}}" type="button" class="btn btn-xs btn-outline-primary  btn-icon-tex">
+            <i class="btn-icon-prepend" data-feather="plus"></i>
+            Create Club</a>
     </nav>
 
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <div>
-                        <a href="{{route('user.create')}}" type="button" class="btn btn-sm btn-primary btn-icon-text">
-                            <i class="btn-icon-prepend" data-feather="plus-circle"></i>
-                            Create User
-                        </a>
-                    </div>
                     <div class="table-responsive pt-3">
                         <table class="table table-bordered">
                             <thead>
@@ -34,25 +31,29 @@
                             <tbody>
                                 @foreach ($clubs as $item)
                                     <tr>
-                                        <td> {{$clubs->firstItem() + $loop->index}} </td>
-                                        <td> {{$item->name}} </td>
-                                        <td> {{$item->username}} </td>
-                                        <td> {{$item->mobile}} </td>
-                                        <td> {{$item->balance}} </td>
-                                        <td> {{$item->status}} </td>
-                                        <td> {{$item->created_at->format('d M Y')}} </td>
+                                        <td> {{ $clubs->firstItem() + $loop->index }} </td>
+                                        <td> {{ $item->name }} </td>
+                                        <td> {{ $item->username }} </td>
+                                        <td> {{ $item->mobile }} </td>
+                                        <td> {{ $item->balance }} </td>
+                                        <td> {{ $item->status }} </td>
+                                        <td> {{ $item->created_at->format('d M Y') }} </td>
                                         <td>
-                                            <form action="{{route('user.destroy', $item->id)}}" method="post" style="display: inline">
+                                            <form action="{{ route('club.destroy', $item->id) }}" method="post"
+                                                style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Sure ! Delete user ?')" class="btn btn-danger btn-xs btn-icon">
+                                                <button type="submit" onclick="return confirm('Sure ! Delete club ?')"
+                                                    class="btn btn-danger btn-xs btn-icon">
                                                     <i data-feather="trash"></i>
                                                 </button>
                                             </form>
-                                            <a href="{{route('user.edit', $item->id)}}" type="button" class="btn btn-warning btn-xs btn-icon">
+                                            <a href="{{ route('club.edit', $item->id) }}" type="button"
+                                                class="btn btn-warning btn-xs btn-icon">
                                                 <i data-feather="check-square"></i>
                                             </a>
-                                            <a href="{{route('user.show', $item->id)}}" type="button" class="btn btn-success btn-xs btn-icon">
+                                            <a href="{{ route('club.show', $item->id) }}" type="button"
+                                                class="btn btn-success btn-xs btn-icon">
                                                 <i data-feather="eye"></i>
                                             </a>
 

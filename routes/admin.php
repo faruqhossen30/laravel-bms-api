@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AgoraController;
 use App\Http\Controllers\Admin\AutoquestionController;
+use App\Http\Controllers\Admin\Bet\BetlistController;
+use App\Http\Controllers\Admin\Bet\BetwinController;
 use App\Http\Controllers\Admin\BetController;
 use App\Http\Controllers\Admin\ClubController;
 use App\Http\Controllers\Admin\DepositController;
@@ -13,6 +15,7 @@ use App\Http\Controllers\Admin\MatchequestionController;
 use App\Http\Controllers\Admin\MatchequestionoptionController;
 use App\Http\Controllers\Admin\MembershipController;
 use App\Http\Controllers\Admin\PaymentgatewayController;
+use App\Http\Controllers\Admin\QuestionoptionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -37,29 +40,49 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('team', TeamController::class);
     Route::resource('deposit', DepositController::class);
     Route::resource('withdraw', WithdrawController::class);
+    Route::resource('autoquestion', AutoquestionController::class);
+    // Users
+    Route::resource('user', UserController::class);
+    Route::resource('club', ClubController::class);
+    Route::resource('admin', AdminController::class);
+    Route::resource('matche', MatcheController::class);
+    // Bet
+    Route::resource('bet', BetController::class);
+    Route::get('bet/betlist/option/{id}', [BetlistController::class, 'index'])->name('admin.betlist');
+    Route::post('bet/option/win/{id}', [BetwinController::class, 'betWin'])->name('admin.betwin');
+    Route::post('bet/option/stop/{id}', [BetwinController::class, 'betStop'])->name('admin.betstop');
+    Route::post('bet/option/start/{id}', [BetwinController::class, 'betStart'])->name('admin.betstart');
 
-    Route::get('transactions',[TransactionController::class, 'index'])->name('transactions');
-
+    Route::get('transactions', [TransactionController::class, 'index'])->name('transactions');
 
     // Settings
     Route::get('/settings', [SettingController::class, 'settingPage'])->name('admin.settings');
     Route::post('/setting/mindeposit', [SettingController::class, 'minimumDeposit'])->name('admin.setting.mindeposit');
     Route::post('/setting/header-notice', [SettingController::class, 'headerNotice'])->name('admin.setting.headernotice');
     Route::post('/setting/footer-notice', [SettingController::class, 'footerNotice'])->name('admin.setting.footernotice');
-    // Users
-    Route::resource('user',UserController::class);
-    Route::resource('matche',MatcheController::class);
-    Route::resource('bet',BetController::class);
-    Route::resource('autoquestion',AutoquestionController::class);
 
-    Route::get('matche/{id}/matchequestion/create',[MatchequestionController::class, 'create'])->name('matchequestion.create');
-    Route::post('matche/{id}/matchequestion/create',[MatchequestionController::class, 'store'])->name('matchequestion.store');
+    Route::get('matche/staatuschange/{id}', [MatcheController::class, 'changeStatus'])->name('matche.changestatus');
 
-    Route::get('matche/{matche_id}/question/{question_id}/option/create',[MatchequestionoptionController::class, 'create'])->name('questionoption.create');
-    Route::post('matche/{matche_id}/question/{question_id}/option/create',[MatchequestionoptionController::class, 'store'])->name('questionoption.store');
+    // Matche Question
+    Route::get('matche/{id}/matchequestion/create', [MatchequestionController::class, 'create'])->name('matchequestion.create');
+    Route::post('matche/{id}/matchequestion/create', [MatchequestionController::class, 'store'])->name('matchequestion.store');
+    Route::get('matchequestion/{id}/update', [MatchequestionController::class, 'update'])->name('matchequestion.update');
+    Route::get('matche/matchequestion/{id}', [MatchequestionController::class, 'destroy'])->name('matchequestion.destroy');
+    Route::get('matche/matchequestion/stopstart/{id}', [MatchequestionController::class, 'stopStart'])->name('matchequestion.stopStart');
 
-    Route::get('/clubs', [ClubController::class, 'index'])->name('clublist');
-    Route::get('/admins', [AdminController::class, 'adminList'])->name('adminlist');
+
+    Route::post('matche/question/option/create', [QuestionoptionController::class, 'store'])->name('questionoption.store');
+    Route::post('matche/question/option/{id}', [QuestionoptionController::class, 'destroy'])->name('questionoption.delete');
+    Route::post('matche/question/option/{id}/edit', [QuestionoptionController::class, 'update'])->name('questionoption.update');
+    // Route::get('matche/question/option/create',[QuestionoptionController::class, 'store'])->name('questionoption.store');
+
+
+    // Route::get('matche/{matche_id}/question/{question_id}/option/create',[MatchequestionoptionController::class, 'create'])->name('questionoption.create');
+    // Route::post('matche/{matche_id}/question/{question_id}/option/create',[MatchequestionoptionController::class, 'store'])->name('questionoption.store');
+
+
+
+
 
     Route::post('/setting/websitename', [SettingController::class, 'websiteName'])->name('admin.setting.websitename');
     Route::post('/setting/daimond-commission', [SettingController::class, 'daimondCommission'])->name('admin.setting.daimondcommission');

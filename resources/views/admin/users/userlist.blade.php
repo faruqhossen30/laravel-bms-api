@@ -1,11 +1,11 @@
 @extends('admin.layout.master')
 @section('content')
-    <nav class="page-breadcrumb d-flex justify-content-between">
-        <ol class="breadcrumb">
+    <nav class="page-breadcrumb d-flex justify-content-between align-items-center">
+        <ol class="breadcrumb pt-1">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">updata</li>
+            <li class="breadcrumb-item active" aria-current="page">Users / List</li>
         </ol>
-        <a href="" type="button" class="btn btn-sm btn-outline-primary  btn-icon-tex">
+        <a href="" type="button" class="btn btn-xs btn-outline-primary  btn-icon-tex">
             <i class="btn-icon-prepend" data-feather="plus"></i>
             Create User</a>
     </nav>

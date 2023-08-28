@@ -37,7 +37,7 @@ class ListapiController extends Controller
 
     public function matchList()
     {
-        $matches = Matche::with('questions')->with('questions.options')->get();
+        $matches = Matche::with('questions')->with('questions.options')->orderBy('id','desc')->get();
 
         return response()->json([
             'success' => true,

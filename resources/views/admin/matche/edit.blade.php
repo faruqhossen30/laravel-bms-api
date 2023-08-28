@@ -104,8 +104,8 @@
                                     <label for="status" class="form-label">Status</label>
                                     <select name="status" id="status"
                                         class="form-control @error('status') is-invalid @enderror">
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option value="live" @if ($match->status=='live') selected @endif>Live</option>
+                                        <option value="upcoming" @if ($match->status=='upcoming') selected @endif>Upcoming</option>
                                     </select>
                                     @error('status')
                                         <span class="text-danger">{{ $message }}</span> <br>

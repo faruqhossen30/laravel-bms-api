@@ -17,7 +17,7 @@ class DepositController extends Controller
      */
     public function index()
     {
-        $deposits = Deposit::paginate(25);
+        $deposits = Deposit::latest()->paginate(25);
         return view('admin.deposit.index', compact('deposits'));
     }
 

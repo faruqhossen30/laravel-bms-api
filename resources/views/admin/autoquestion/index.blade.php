@@ -72,7 +72,7 @@
                                             <form action="{{route('autoquestion.destroy', $item->id)}}" method="post" style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" onclick="return confirm('Sure ! Delete label ?')" class="btn btn-danger btn-xs btn-icon">
+                                                <button type="submit" onclick="return confirm('Sure ! Delete auto question ?')" class="btn btn-danger btn-xs btn-icon">
                                                     <i data-feather="trash"></i>
                                                 </button>
                                             </form>
@@ -82,6 +82,9 @@
 
                             </tbody>
                         </table>
+                    </div>
+                    <div class="py-2">
+                        {{$questions->links()}}
                     </div>
                 </div>
             </div>
