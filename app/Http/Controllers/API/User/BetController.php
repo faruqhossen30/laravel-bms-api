@@ -25,9 +25,7 @@ class BetController extends Controller
 
     public function store(Request $request)
     {
-        // $user = $request->user();
         $user = User::firstWhere('id', $request->user()->id);
-        // return $user;
 
         $request->validate([
             'matche_id' => 'required',
@@ -36,6 +34,12 @@ class BetController extends Controller
             'bet_rate' => 'required',
             'bet_amount' => 'required',
         ]);
+
+        if (intval($request->bet_amount) > intval($user->balance)) {
+            return response()->json([
+                'message' => "Insufficent balance! Use maximum {$user->balance}"
+            ],422);
+        }
 
 
         $checkQuestion = MatcheQuestion::where([
@@ -79,6 +83,7 @@ class BetController extends Controller
                 $club = User::firstWhere('id', $user->club_id);
                 $clubCommission = ($club->club_commission / 100) * $request->bet_amount;
                 $addBalanceToClub = $club->increment('balance', $clubCommission);
+                $club->save();
 
                 // return $clubCommission;
 
