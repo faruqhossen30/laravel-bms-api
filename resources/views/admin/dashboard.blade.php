@@ -19,26 +19,29 @@
                 <i class="btn-icon-prepend" data-feather="printer"></i>
                 Print
             </button>
-            <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-                <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-                Download Report
-            </button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 col-xl-12 stretch-card">
-            <x-admin.dashboardcard icon='users' label='All Users' value='500' class="bg-success"/>
-        </div>
-    </div>
-@endsection
+            <div class="row flex-grow-1">
+                @php
+                    $bet_amount = $bets->sum('bet_amount');
+                    $return_amount = $bets->sum('return_amount');
+                @endphp
+                <x-admin.dashboardcard icon='users' label='Today Submit' value='{{$bets->count()}}' class="bg-success" />
+                <x-admin.dashboardcard icon='users' label='Today Bet Amoount' value='৳{{$bet_amount}}' class="bg-success" />
+                <x-admin.dashboardcard icon='users' label='Today Return Amoount' value='৳{{$return_amount}}' class="bg-success" />
+                {{-- <x-admin.dashboardcard icon='users' label='Return Amount' value='500' class="bg-success" /> --}}
+            </div>
+        @endsection
 
-@push('plugin-scripts')
-    <script src="{{ asset('admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
-@endpush
+        @push('plugin-scripts')
+            <script src="{{ asset('admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ asset('admin/assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
+        @endpush
 
-@push('custom-scripts')
-    <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/datepicker.js') }}"></script>
-@endpush
+        @push('custom-scripts')
+            <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+            <script src="{{ asset('admin/assets/js/datepicker.js') }}"></script>
+        @endpush

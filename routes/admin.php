@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WithdrawController;
+use App\Models\Bet;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +94,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/setting/sponsercommission', [SettingController::class, 'sponserCommission'])->name('admin.setting.sponsercommission');
 
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        $bets = Bet::whereDate('created_at', Carbon::today())->get();
+        // return $bets;
+        $name = 'Jamal Mia';
+        return view('admin.dashboard', compact('bets','name'));
     });
 
     Route::group(['prefix' => 'email'], function () {

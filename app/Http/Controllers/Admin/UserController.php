@@ -48,7 +48,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::with('club')->firstWhere('id', $id);
+        // return $user;
+        return view('admin.users.show',compact('user'));
     }
 
     /**
@@ -59,7 +61,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::firstWhere('id', $id);
+        return view('admin.users.edit',compact('user'));
     }
 
     /**

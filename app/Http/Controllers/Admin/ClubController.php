@@ -72,7 +72,9 @@ class ClubController extends Controller
     {
         //
         $club = User::firstWhere('id', $id);
-        return view('admin.club.show', compact('club'));
+        $totalusers = User::where('club_id', $club->id)->count();
+        // return $club;
+        return view('admin.club.show', compact('club','totalusers'));
     }
 
     /**

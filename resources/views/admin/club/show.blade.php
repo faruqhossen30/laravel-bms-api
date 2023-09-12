@@ -14,52 +14,42 @@
                     <div class="col-6">
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
                                 <span><i data-feather="user"></i></span>
                                 <span class="px-2"> Name : {{ $club->name }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
                                 <span><i data-feather="user"></i></span>
                                 <span class="px-2"> Username : {{ $club->username }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
-                                <span><i data-feather="user"></i></span>
+                                <span><i data-feather="phone-call"></i></span>
                                 <span class="px-2"> Mobile : {{ $club->mobile }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
-                                <span><i data-feather="user"></i></span>
+                                <span><i data-feather="dollar-sign"></i></span>
                                 <span class="px-2"> Balance : {{ $club->balance }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
-                                <span><i data-feather="user"></i></span>
-                                <span class="px-2"> Total User : {{ $club->mobile }}</span>
+                                <span><i data-feather="users"></i></span>
+                                <span class="px-2"> Total User : {{ $totalusers }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
                                 <span><i data-feather="user"></i></span>
-                                <span class="px-2"> Club Woner : {{ $club->club_woner }}</span>
+                                <span class="px-2"> Club Woner : {{ $club->club_owner }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
                                 <span><i data-feather="user"></i></span>
                                 <span class="px-2"> Mobile : {{ $club->club_mobile }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
                                 <span><i data-feather="user"></i></span>
                                 <span class="px-2"> Commission : {{ $club->club_commission }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
                                 <span><i data-feather="user"></i></span>
                                 <span class="px-2"> Status : {{ $club->status }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-start align-items-center">
-                                {{-- <span class="badge bg-primary rounded-pill">14</span> --}}
                                 <span><i data-feather="user"></i></span>
                                 <span class="px-2"> Created : {{ $club->created_at->format('d M Y, h:i:s A') }}</span>
                             </li>

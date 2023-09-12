@@ -32,13 +32,15 @@ class BetController extends Controller
             'question_id' => 'required',
             'option_id' => 'required',
             'bet_rate' => 'required',
-            'bet_amount' => 'required',
+            'bet_amount' => 'required|numeric|min:20',
+        ], [
+            'bet_amount.min' => 'Minimu bet amount 20 TK.'
         ]);
 
         if (intval($request->bet_amount) > intval($user->balance)) {
             return response()->json([
-                'message' => "Insufficent balance! Use maximum {$user->balance}"
-            ],422);
+                'message' => "Insufficent balance! You can use maximum {$user->balance}"
+            ], 422);
         }
 
 

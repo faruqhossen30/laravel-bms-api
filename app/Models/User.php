@@ -42,8 +42,8 @@ class User extends Authenticatable
         'name_updated_at' => 'datetime'
     ];
 
-    public function otp()
+    public function club()
     {
-        return $this->hasOne(VerificationCode::class, 'user_id');
+        return $this->belongsTo(User::class, 'club_id');
     }
 }

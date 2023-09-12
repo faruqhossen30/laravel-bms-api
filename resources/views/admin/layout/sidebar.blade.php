@@ -48,13 +48,13 @@
 
       <li class="nav-item">
         <a href="{{route('withdraw.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="dollar-sign"></i>
+          <i class="link-icon" data-feather="info"></i>
           <span class="link-title">Withdraw</span>
         </a>
       </li>
       <li class="nav-item">
         <a href="{{route('transactions')}}" class="nav-link">
-          <i class="link-icon" data-feather="dollar-sign"></i>
+          <i class="link-icon" data-feather="bar-chart-2"></i>
           <span class="link-title">Transactions</span>
         </a>
       </li>
@@ -62,7 +62,7 @@
 
       <li class="nav-item">
         <a href="{{route('autoquestion.index')}}" class="nav-link">
-          <i class="link-icon" data-feather="dollar-sign"></i>
+          <i class="link-icon" data-feather="help-circle"></i>
           <span class="link-title">Auto Question</span>
         </a>
       </li>

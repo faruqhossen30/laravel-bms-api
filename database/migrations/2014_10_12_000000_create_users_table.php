@@ -28,6 +28,7 @@ return new class extends Migration
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_club')->default(false);
             $table->boolean('is_user')->default(true);
+            $table->boolean('is_super')->default(true);
             $table->string('club_owner')->nullable();
             $table->string('club_mobile')->nullable();
             $table->string('club_address')->nullable();
